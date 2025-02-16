@@ -1,3 +1,4 @@
+// Note: Not all datasets used in the original study are publicly available. Therefore, we use example datasets (Example_Data_1 and Example_Data_2) to demonstrate the methodology and ensure reproducibility.
 var Example_Data_1 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_1");
 var Example_Data_2 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_2");
 var Example_Data_1 = Example_Data_1.sort('index');
@@ -253,7 +254,7 @@ var labelDistribution = Example_Data_1.aggregate_histogram('Label');
 print('Label Distribution:', labelDistribution);
 
 // Add a random column for splitting
-var total_sample_with_random = total_sample.sort('index').randomColumn('random', 123);
+var total_sample_with_random = total_sample.sort('index').randomColumn('random', 123); //For reproducibility
 
 // Split the data into training and validation sets (80% training, 20% validation)
 var split = 0.8;
