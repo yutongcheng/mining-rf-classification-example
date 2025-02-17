@@ -67,13 +67,15 @@ Due to data confidentiality, not all datasets used in the original study are pub
 
 ## Requirements
 
+### **Software & Dependencies**
+- Google Earth Engine (Tested in GEE Code Editor, May 2024)
+- R version 4.4.0 (Tested on RStudio)
+  
 ### **Google Earth Engine (GEE)**
-
 - **Required** for running `Open-pit-identification.js` and `Extract_ASTER_band_ratios.js`.
 - **Data is stored in an EE FeatureCollection**.
-
+  
 ### **R Environment**
-
 - **Required** for `Commodity-classification-model.R`.
 - Install the following **R packages**:
   ```r
