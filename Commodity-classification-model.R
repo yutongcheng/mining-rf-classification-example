@@ -20,7 +20,7 @@ library(dplyr)
 library(ggplot2)
 
 # Load training data
-data <- read.csv("E:\\data\\Submisson\\sample code and data\\0216\\Example_Data_4.csv")
+data <- read.csv("Example_Data_4.csv")
 
 # Identify the columns to exclude (ID and label_1) for further data processing.
 exclude_columns <- c("ID", "label_1")
@@ -145,5 +145,5 @@ colSums(is.na(unknown_data))
 unknown_data_clean <- na.omit(unknown_data)
 predictions <- predict(best_rf_model, newdata = unknown_data_clean)
 summary(predictions)
-
+# The prediction results at this level will then be used as the prediction dataset for the next levels.
 
