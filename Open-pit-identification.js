@@ -121,8 +121,7 @@ function mask(image) {
                      .filter(ee.Filter.eq('year', y))
                      .mode();
   var waterMask = water.neq(2);
-  
-  
+    
   // ASTER NDSI Calculation
   var ndsi = image.expression('(i.green - i.swir1) / (i.green + i.swir1)',{i: image}).rename('ndsi');
   
@@ -213,7 +212,6 @@ function addAllbands(image) {
    ]);
 }
 
-
 // Map the addAllbands function over the collection
 var collectionWithAllbands = collection.map(addAllbands);
 var Final_sample = collectionWithAllbands.min();
@@ -235,7 +233,7 @@ var bands = [
     'thermal5'
     ]
 
-// Extracts training samples from the Final_sample image using Example_Data_1 as reference points. 
+// Extracts training samples from the Final_sample image using Example_Data_1 as a reference. 
 // Each sample is assigned attributes from Example_Data_1, including 'Label' (class identifier), 
 // 'Commodity', and 'index'. 
 // Sampling is performed at a spatial resolution of 15 meters, with tile scaling set to 16 to optimize processing.
@@ -306,5 +304,5 @@ Export.table.toDrive({
   
 // The output, Example_Data_3_pre, in this example consists of a few 500-metre grid centroids, each assigned probabilities for six land-use categories.  
 // To systematically analyse unlabelled polygons, we generated 500-metre grid centroids and progressively reduced the grid size to enhance open pit detection.  
-// If multiple open pit points were identified within a single polygon, the point with the highest probability was selected as the final data point for using to obtain ASTER scense in GEE.
-// After processing Example_Data_3_pre, the open pit locations for each mining polygon/site will be uploaded to GEE to retrieve ASTER scenes with band values for subsequent commodity classification.
+// If multiple open-pit points were identified within a single polygon, the point with the highest probability was selected as the final data point for obtaining ASTER scenes with band ratios in GEE.
+// After processing Example_Data_3_pre, the open-pit locations for each mining polygon/site will be uploaded to GEE to retrieve ASTER scenes with band ratios for subsequent commodity classification.
