@@ -1,6 +1,5 @@
 // After identifying open pits using the open pit identification model and processing the output (Example_Data_3_pre), we used the final open pit locations (Example_Data_3) to obtain ASTER band ratios (mineral indices; Geoscience Australia, 2004) for preparing the subsequent commodity classification.
-// As this example contains only a few data points for demonstration, we add a 15m buffer around each identified open pit to obtain more scenes for the subsequent commodity classification.
-var Example_Data_3 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_3_15m");
+// As this example contains only a few data points for demonstration, we add a 15m buffer around each identified open pit to obtain more scenes for the subsequent commodity classification. Please note that the original study used only point data, with one point per mining site/polygon.var Example_Data_3 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_3_15m");
 
 // Dates of ASTER scenes used
 var startDate = '2003-01-01';
@@ -119,8 +118,7 @@ function mask(image) {
                      .filter(ee.Filter.eq('year', y))
                      .mode();
   var waterMask = water.neq(2);
-  
-  
+    
   // ASTER NDSI Calculation
   var ndsi = image.expression('(i.green - i.swir1) / (i.green + i.swir1)',{i: image}).rename('ndsi');
   // Snow Mask
@@ -256,8 +254,6 @@ function addRatios(image) {
     indicator29,
   ]);
 }
-
-
 
 // Map the addRatios function over the collection
 var collectionWithRatios = collection.map(addRatios);
