@@ -12,12 +12,13 @@ This repository provides a methodology for **identifying open-pit mining sites**
 
 ## Data
 
-Due to data confidentiality, not all datasets used in the original study are publicly available. Instead, example datasets (**Example_Data_1**, **Example_Data_2**, **Example_Data_3**, and **Example_Data_4**) are provided to ensure reproducibility.
+Due to data confidentiality, not all datasets used in the original study are publicly available. Instead, example datasets (**Example_Data_1**, **Example_Data_2**, **Example_Data_3**, and **Example_Data_4**) are provided to ensure reproducibility. Additionally, the commodity classification results based on Maus et al. (2022)'s polygons from FINEPRINT (**licensed under CC BY-SA 4.0**) are available in this repository.
 
 - **Example_Data_1**: Training data for open-pit identification (**available in the GEE JavaScript code**).
 - **Example_Data_2**: Unknown regions for open-pit prediction (**available in the GEE JavaScript code**).
 - **Example_Data_3**: Identified open pits, used for extracting ASTER band ratios (**available in the GEE JavaScript code**).
 - **Example_Data_4**: ASTER band ratio data for commodity classification (**available in this repository as `Example_Data_4.csv`**).
+- **Commodity Classification Results**: The final classification results of commodity types, with mining polygon IDs following Maus et al. (2022)'s polygons from FINEPRINT (**licensed under CC BY-SA 4.0**) (**available in this repository as `Commodity-classification-results.csv`**).
 
 ## Workflow
 
@@ -91,7 +92,7 @@ Due to data confidentiality, not all datasets used in the original study are pub
 ## Outputs
 - Example_Data_3_pre.csv - Open-pit identification results.
 - Example_Data_4_pre.csv - ASTER band ratios for commodity classification.
-- Commodity classification results - Predictions for identified commodities.
+- Example_Commodity_classification_results - Predictions for identified commodities.
 
 ## Notes
   Ensure that Google Earth Engine (GEE) assets are correctly linked.
