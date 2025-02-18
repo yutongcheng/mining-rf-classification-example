@@ -98,3 +98,6 @@ Due to data confidentiality, not all datasets used in the original study are pub
   Ensure that Google Earth Engine (GEE) assets are correctly linked.
   Modify folder paths before exporting results to Google Drive.
   This repository provides an example methodology; adjustments may be required for different datasets and study areas.
+## Licenses:
+- The code in this repository is licensed under **CC BY-NC 4.0**.
+- The commodity classification results (**Commodity-classification-results.csv**) are licensed under **CC BY-SA 4.0**.
