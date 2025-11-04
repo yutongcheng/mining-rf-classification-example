@@ -1,5 +1,7 @@
-// After identifying open pits using the open pit identification model and processing the output (Example_Data_3_pre), we used the final open pit locations (Example_Data_3) to obtain ASTER band ratios (mineral indices; Geoscience Australia, 2004) for preparing the subsequent commodity classification.
-// As this example contains only a few data points for demonstration, we add a 15m buffer around each identified open pit to obtain more scenes for the subsequent commodity classification. Please note that the original study used only point data, with one point per mining site/polygon.var Example_Data_3 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_3_15m");
+// After extracting open-pit locations from Cheng et al. (2025), we used the illustrative open-pit locations (Example_Data_1) to obtain ASTER band ratios (mineral indices; Geoscience Australia, 2004) for preparing the subsequent commodity classification.
+// As this example contains only a few data points for demonstration purposes, we applied a 15 m buffer around each illustrative open-pit points to include more pixels for the subsequent commodity classification. Please note that the original study used only point data, with one point/pixel per mining site/polygon. 
+
+var Example_Data_1 = ee.FeatureCollection("projects/ee-chengyu-tongb2/assets/OP_training_example/Example_Data_3_15m");// Note: Example_Data_3_15m is the correct dataset used. The variable name (Example_Data_1) is used here because this dataset now appears first, and the data were not re-uploaded.
 
 // Dates of ASTER scenes used
 var startDate = '2003-01-01';
@@ -210,7 +212,7 @@ function addRatios(image) {
   var indicator16 = swir4.divide(swir3).rename('indicator16');
   var indicator17 = swir4.divide(swir2).rename('indicator17');  
   var indicator18 = (swir2.multiply(swir4)).divide(swir3.multiply(swir3)).rename('indicator18');  
-  var indicator19 = swir1.divide(swir2).rename('indicator19'); 
+  //var indicator19 = swir1.divide(swir2).rename('indicator19'); 
   //var indicator20 = swir2.divide(swir3).rename('indicator20'); Same ratio as Indicator 15.
   var indicator21 = thermal5.divide(thermal3).rename('indicator21');  
   var indicator22 = (thermal2.multiply(thermal2)).divide(thermal1).divide(thermal3).rename('indicator22');
@@ -241,7 +243,7 @@ function addRatios(image) {
     indicator16,
     indicator17,
     indicator18,
-    indicator19,
+    //indicator19,
     //indicator20,
     indicator21,
     indicator22,
@@ -266,7 +268,7 @@ var bands = ['indicator1','indicator2','indicator3','indicator4', 'indicator5','
              ]
 
 var total_sample = Final_sample.select(bands).sampleRegions({
-  collection: Example_Data_3,
+  collection: Example_Data_1,
   properties:['polygon_id','Commodity','index'],
   scale:15,
   tileScale: 16
@@ -275,11 +277,21 @@ var total_sample = Final_sample.select(bands).sampleRegions({
 // Export the scenes to Google Drive as GeoJSON
 Export.table.toDrive({
   collection: total_sample,
-  description: 'Example_Data_4_pre', // Description for the exported file
+  description: 'Example_Data_2_pre', // Description for the exported file
   folder: 'YOUR_FOLDER_NAME', // Specify the folder in your Google Drive
   fileFormat: 'CSV' // Export format
 });
 
-// Both labelled and unlabelled polygons need to obtain ASTER scenes with band ratios, serving as training and prediction datasets, respectively, in the subsequent commodity classification model.  
-// After obtaining ASTER scenes with band ratios, the commodity classification will be conducted using R in RStudio, as it provides advanced statistical and machine learning tools for classification and analysis.
-// Example_Data_4_pre will be processed and then input into RStudio.
+// Both labelled and unlabelled polygons need to obtain ASTER pixels with band ratios, serving as training and prediction datasets, respectively, in the subsequent commodity classification model.  
+// After obtaining ASTER pixels with band ratios, the commodity classification will be conducted using R in RStudio, as it provides advanced statistical and machine learning tools for classification and analysis.
+// In the actual workflow, Example_Data_2_pre is processed and then imported into RStudio.
+
+// For HISUI hyperspectral data, we evaluated multiple combinations of indices across the full 185 spectral bands, and the most effective configuration was obtained by averaging bands to mimic ASTER mineral indices 
+// These HISUI-derived indices were then combined with ASTER thermal indices (since HISUI lacks thermal bands) to ensure completeness of the spectral features used in the model.
+// To further utilise HISUI’s hyperspectral characteristics, which provide finer spectral discrimination and improved sensitivity to subtle mineralogical variations, all HISUI bands were initially included in the classification together with the indices. 
+// However, to minimise redundancy and improve model efficiency, a feature-importance analysis was conducted, retaining only the top 25% of features with pairwise correlations below 0.9 for the final model.
+// Note: HISUI data are not fully open-access; data usage requires registration and permission from the provider, and are therefore not included in this example.
+
+
+
+
