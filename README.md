@@ -9,6 +9,8 @@ This repository provides a methodology for a **Commodity classification model** 
 1. **Extract_band_ratios.js** - Extracts band ratios from open-pit locations identified by Cheng et al. (2025) for subsequent classification. ASTER is used as an example because HISUI data, although freely accessible, require registration and approval for download.
 2. **Commodity-classification-model.R** - Implements a **hierarchical random forest model** for commodity classification.
 
+Final grid-level classification results of commodity types based on the polygons from Maus et al. (2022) and Tang and Werner (2023) (**licensed under CC BY-SA 4.0**) are available in this repository as **`Results.zip`**.
+
 ## Data
 
 Due to data confidentiality, not all datasets used in the original study are publicly available. Instead, example datasets (**Example_Data_1**, and **Example_Data_2**) are provided to ensure reproducibility. Additionally, the commodity classification results (in the grid level) based on the polygons from Maus et al. (2022) and Tang and Werner (2023) (**licensed under CC BY-SA 4.0**) are available in this repository.
