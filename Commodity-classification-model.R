@@ -370,4 +370,4 @@ cat(sprintf("OOB  Bal=%.3f | Test Bal=%.3f | Gap(OOB−Test)=%.3f\n", oob_bal,  
 
 # The results at this level (L1) will then be used as the prediction dataset for the next levels.
 # The resulting model outputs from all levels were then used to quantify deforestation and biodiversity risk. 
-# The mining area, deforestation-to-mining area ratio, and Extinction Risk Index (ERI) for 20 commodities were further calculated based on the polygons from Maus et al. (2022) and Tang and Werner (2023) (**licensed under CC BY-SA 4.0**) available and shared in this repository as `Results.zip`.
+# The mining area, deforestation-to-mining area ratio, and Extinction Risk Index (ERI) for 20 commodities were further calculated based on the polygons from Maus et al. (2022) and Tang and Werner (2023) (licensed under CC BY-SA 4.0) and are available in this repository as Results.zip.
